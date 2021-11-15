@@ -134,11 +134,20 @@ const addEmployee = () => {
             }
         },
         {
-            type: 'input',
-            name: 'gitUsername',
+            type: 'username',
+            name: 'GitHub',
             message: "What is the engineer's GitHub username?",
-            when: (input) => input.role === "Engineer"
+            when: (input) => input.role === "Engineer",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log ("The intern's name must be entered");
+                    return false; 
+                }
+            }
         },
+
 //Intern
         {
             type: 'input',
@@ -207,11 +216,11 @@ const addEmployee = () => {
         //     employee = new Intern (answers.name, id, answers.email, answers.school);
 
 
-        let { name, id, email, role, gitUsername, school, addAnotherEmployee } = answers; 
+        let { name, id, email, role, GitHub, school, addAnotherEmployee } = answers; 
         let employee; 
 
         if (role === "Engineer") {
-            employee = new Engineer (name, id, email, gitUsername);
+            employee = new Engineer (name, id, email, GitHub);
 
 
         } else if (role === "Intern") {
