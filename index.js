@@ -199,7 +199,14 @@ const addEmployee = () => {
     ])
     .then(answers => {
 
-        
+        // if (answers.role === "Engineer") {
+        //     employee = new Engineer (answers.name, answers.id, answers.email, answers.username);
+
+
+        // } else if (answers.role === "Intern") {
+        //     employee = new Intern (answers.name, id, answers.email, answers.school);
+
+
         let { name, id, email, role, gitUsername, school, addAnotherEmployee } = answers; 
         let employee; 
 
