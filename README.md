@@ -4,6 +4,8 @@
 ## Description 
 The purpose of this app is to generate a quick and easier a team profile that display basic contact information for employees. The html is generated based on the users input using the Inquirer module from Node.js. It is provides the ability to test the constructors within the app using Jest.
  
+ ![Screenshot](dist/assets/images/screenshot.png)
+
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
@@ -14,7 +16,6 @@ The purpose of this app is to generate a quick and easier a team profile that di
 ## Installation 
 To install the app the user will need to clone this repository from GitHub and run npm install to download the dependency packages, Inquirer and Jest.  
 
-![Screenshot](dist/assets/images/screenshot.png)
 
 ## Usage 
 To run the app use npm start. This will promote the user to answer questions about their teams manager and employees in the console. 
