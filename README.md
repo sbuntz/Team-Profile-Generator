@@ -14,11 +14,13 @@ The purpose of this app is to generate a quick and easier a team profile that di
 ## Installation 
 To install the app the user will need to clone this repository from GitHub and run npm install to download the dependency packages, Inquirer and Jest.  
 
+![Screenshot](dist/assets/images/screenshot.png)
+
 ## Usage 
 To run the app use npm start. This will promote the user to answer questions about their teams manager and employees in the console. 
 
 ![Gif demo](dist/assets/images/demo.gif)
-<img src="dist/assets/image/screenshot.png">
+
 
 ## License 
 This project is license under MIT
