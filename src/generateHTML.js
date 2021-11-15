@@ -30,8 +30,8 @@ const generateEngineer = function (engineer) {
 
             <div class="card-body">
                 <p class="id">ID: ${engineer.id}</p>
-                <p class="email">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
-                <p class="github">Github: <a href="https://www.github.com/${engineer.username}">${engineer.username}</a></p>
+                <p class="email">Email: <a href="mailto:${engineer.email}" target="_blank">${engineer.email}</a></p>
+                <p class="github">Github: <a href="https://www.github.com/david.online" target="_blank">david.online</a></p>
             </div>
 
         </div>
@@ -51,7 +51,7 @@ const generateIntern = function (intern) {
 
             <div class="card-body">
                 <p class="id">ID: ${intern.id}</p>
-                <p class="email">Email:<a href="mailto:${intern.email}">${intern.email}</a></p>
+                <p class="email">Email:<a href="mailto:${intern.email}" target="_blank">${intern.email}</a></p>
                 <p class="school">School: ${intern.school}</p>
             </div>
     </div>
