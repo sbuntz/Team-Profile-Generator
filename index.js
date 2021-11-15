@@ -12,37 +12,43 @@ const generateHTML = require('./src/generateHTML');
 const teamArray = []; 
 
 const addManager = () => {
+    console.log(
+        "\n",
+    "Time to build your team!", "\n",
+     "Please start by entering the team name followed by the manager's details","\n",
+     "Note: all fields must be completed", "\n"
+        ) 
     return inquirer.prompt ([
         {
             type: 'input',
             name: 'name',
-            message: "Please enter the manager's name", 
+            message: "What is the team manager's name?", 
             validate: nameInput => {
                 if (nameInput) {
                     return true;
                 } else {
-                    console.log ("The manager must be defined");
+                    console.log ("The manager must be entered");
                     return false; 
                 }
             }
         },
         {
-            type: 'input',
+            type: 'number',
             name: 'id',
-            message: "Please enter the manager's ID.",
+            message: "What is the team manager's ID?",
             validate: nameInput => {
-                if  (isNaN(nameInput)) {
-                    console.log ("The manager's id must be defined")
-                    return false; 
-                } else {
+                if  (nameInput) {
                     return true;
+                } else {
+                    console.log ("The manager's ID must be entered")
+                    return false; 
                 }
             }
         },
         {
             type: 'input',
             name: 'email',
-            message: "Please enter the manager's email.",
+            message: "What is the team manager's email?",
             validate: email => {
                 valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
                 if (valid) {
@@ -56,7 +62,15 @@ const addManager = () => {
         {
             type: 'input',
             name: 'officeNumber',
-            message: "Please enter the manager's office number"
+            message: "What is the team manager's office number?",
+            validate: nameInput => {
+                if  (nameInput) {
+                    return true;
+                } else {
+                    console.log ("The manager's office number must be entered")
+                    return false; 
+                }
+            }
         }
     ])
     .then(managerInput => {
@@ -64,73 +78,116 @@ const addManager = () => {
         const manager = new Manager (name, id, email, officeNumber);
 
         teamArray.push(manager); 
-        console.log(manager); 
+//        console.log(manager); 
     })
 };
 
 const addEmployee = () => {
-    console.log(`
-    ------------------
-     Add an employee 
-    ------------------
-    `);
-
     return inquirer.prompt ([
         {
             type: 'list',
             name: 'role',
-            message: "Please select the employee's role",
+            message: "What type of team member would you like to add?",
             choices: ['Engineer', 'Intern']
         },
         {
             type: 'input',
             name: 'name',
-            message: "Please enter the employee's name", 
+            message: "What is the engineer's name?",
+            when: (input) => input.role === "Engineer",
             validate: nameInput => {
                 if (nameInput) {
                     return true;
                 } else {
-                    console.log ("The employee's name must be defined");
+                    console.log ("The engineer's name must be entered");
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'number',
+            name: 'id',
+            message: "What is the engineer's ID?",
+            when: (input) => input.role === "Engineer",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log ("The engineer's ID must be entered");
                     return false; 
                 }
             }
         },
         {
             type: 'input',
-            name: 'id',
-            message: "Please enter the employee's ID.",
-        },
-        {
-            type: 'input',
             name: 'email',
-            message: "Please enter the employee's email.",
+            message: "What is the engineer's email?",
+            when: (input) => input.role === "Engineer",
             validate: email => {
                 valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
                 if (valid) {
                     return true;
                 } else {
-                    console.log ("The employee's email must be valid")
+                    console.log ("The engineer's email must be valid")
                     return false; 
                 }
             }
         },
         {
             type: 'input',
-            name: 'github',
-            message: "Please enter the engineer's github username.",
-            when: (input) => input.role === "Engineer",
+            name: 'gitUsername',
+            message: "What is the engineer's GitHub username?",
+            when: (input) => input.role === "Engineer"
+        },
+//Intern
+        {
+            type: 'input',
+            name: 'name',
+            message: "What is the intern's name?",
+            when: (input) => input.role === "Intern",
             validate: nameInput => {
-                if (nameInput ) {
+                if (nameInput) {
                     return true;
                 } else {
-                    console.log ("The engineer's github must be defined")
+                    console.log ("The intern's name must be entered");
+                    return false; 
+                }
+            }
+        },
+        {
+            type: 'number',
+            name: 'id',
+            message: "What is the intern's ID?",
+            when: (input) => input.role === "Intern",
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log ("The intern's ID must be entered");
+                    return false; 
                 }
             }
         },
         {
             type: 'input',
+            name: 'email',
+            message: "What is the intern's email?",
+            when: (input) => input.role === "Intern",
+            validate: email => {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log ("The intern's email must be valid")
+                    return false; 
+                }
+            }
+        },
+
+        {
+            type: 'input',
             name: 'school',
-            message: "Please enter the intern's school",
+            message: "What is the intern's school?",
             when: (input) => input.role === "Intern",
         },
         {
@@ -140,21 +197,19 @@ const addEmployee = () => {
             default: false
         }
     ])
-    .then(employeeData => {
-        // data for employee types 
+    .then(answers => {
 
-        let { name, id, email, role, github, school, addAnotherEmployee } = employeeData; 
+        
+        let { name, id, email, role, gitUsername, school, addAnotherEmployee } = answers; 
         let employee; 
 
         if (role === "Engineer") {
-            employee = new Engineer (name, id, email, github);
+            employee = new Engineer (name, id, email, gitUsername);
 
-            console.log(employee);
 
         } else if (role === "Intern") {
             employee = new Intern (name, id, email, school);
 
-            console.log(employee);
         }
 
         teamArray.push(employee); 
@@ -169,14 +224,14 @@ const addEmployee = () => {
 };
 
 
-// function to generate HTML page file using file system 
+// function to generate HTML 
 const writeFile = data => {
     fs.writeFile('./dist/index.html', data, err => {
         // if there is an error 
         if (err) {
             console.log(err);
             return;
-        // when the profile has been created 
+        
         } else {
             console.log("Your team profile has been successfully created! Please check out the index.html")
         }

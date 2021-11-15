@@ -1,0 +1,42 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:900|Roboto+Mono:300,400,700);
+
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --dark: rgb(95, 93, 93);
+    --white: #ffffff;
+    --light: rgb(243, 243, 243);
+}
+
+
+body {
+  font-family: Roboto Mono;
+  color: var(--dark);
+  background-color: var(--white);
+}
+
+
+#navbar {
+    background-color: var(--dark);
+    color: var(--light);
+    font-size: 50px;
+}
+
+.navbar-brand {
+    font-size: 50px;
+}
+
+
+.card-header {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+.card-body {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
