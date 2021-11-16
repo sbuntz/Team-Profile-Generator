@@ -9,7 +9,7 @@ const Intern = require('./lib/intern');
 const generateHTML = require('./src/generateHTML');
 
 // team array
-const teamArray = []; 
+const teamMembers = []; 
 
 const addManager = () => {
     console.log(
@@ -77,7 +77,7 @@ const addManager = () => {
         const  { name, id, email, officeNumber } = managerInput; 
         const manager = new Manager (name, id, email, officeNumber);
 
-        teamArray.push(manager); 
+        teamMembers.push(manager); 
 //        console.log(manager); 
     })
 };
@@ -208,32 +208,20 @@ const addEmployee = () => {
     ])
     .then(answers => {
 
-        // if (answers.role === "Engineer") {
-        //     employee = new Engineer (answers.name, answers.id, answers.email, answers.username);
+        if (answers.role === "Engineer") {
+            employee = new Engineer (answers.name, answers.id, answers.email, answers.GitHub);
 
 
-        // } else if (answers.role === "Intern") {
-        //     employee = new Intern (answers.name, id, answers.email, answers.school);
-
-
-        let { name, id, email, role, GitHub, school, addAnotherEmployee } = answers; 
-        let employee; 
-
-        if (role === "Engineer") {
-            employee = new Engineer (name, id, email, GitHub);
-
-
-        } else if (role === "Intern") {
-            employee = new Intern (name, id, email, school);
-
+        } else if (answers.role === "Intern") {
+            employee = new Intern (answers.name, id, answers.email, answers.school);
         }
 
-        teamArray.push(employee); 
+        teamMembers.push(employee); 
 
-        if (addAnotherEmployee) {
-            return addEmployee(teamArray); 
+        if (answers.addAnotherEmployee) {
+            return addEmployee(teamMembers); 
         } else {
-            return teamArray;
+            return teamMembers;
         }
     })
 
@@ -256,8 +244,8 @@ const writeFile = data => {
 
 addManager()
   .then(addEmployee)
-  .then(teamArray => {
-    return generateHTML(teamArray);
+  .then(teamMembers => {
+    return generateHTML(teamMembers);
   })
   .then(pageHTML => {
     return writeFile(pageHTML);

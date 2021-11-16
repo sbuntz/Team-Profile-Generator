@@ -29,9 +29,9 @@ const generateEngineer = function (engineer) {
             </div>
 
             <div class="card-body">
-                <p class="id">ID: ${engineer.id}</p>
-                <p class="email">Email: <a href="mailto:${engineer.email}" target="_blank">${engineer.email}</a></p>
-                <p class="github">Github: <a href="https://www.github.com/${engineer.GitHub}" target="_blank">${engineer.GitHub}</a></p>
+                <p>ID: ${engineer.id}</p>
+                <p>Email: <a href="mailto:${engineer.email}" target="_blank">${engineer.email}</a></p>
+                <p>Github: <a href="https://www.github.com/${engineer.GitHub}" target="_blank">${engineer.GitHub}</a></p>
             </div>
 
         </div>
