@@ -6,6 +6,8 @@ The purpose of this app is to generate a quick and easier a team profile that di
  
  ![Screenshot](dist/assets/images/screenshot.png)
 
+ Video Link: https://watch.screencastify.com/v/ulcXLgBuMxUxbmhNZbVO
+
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
